@@ -14,6 +14,7 @@ const NewsBoard = ({category}) => {
     }
 
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
+;
 
     fetch(url)
       .then((response) => {
