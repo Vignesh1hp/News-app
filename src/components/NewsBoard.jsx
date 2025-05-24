@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
 
-const NewsBoard = () => {
+const NewsBoard = ({category}) => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ const NewsBoard = () => {
       return;
     }
 
-    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
 
     fetch(url)
       .then((response) => {
@@ -29,7 +29,7 @@ const NewsBoard = () => {
         console.error("Fetch error:", err);
         setError("Failed to fetch news data.");
       });
-  }, []);
+  }, [category]);
 
   return (
     <div>
