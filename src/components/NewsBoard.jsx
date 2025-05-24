@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
 
-const NewsBoard = ({category}) => {
+const NewsBoard = ({ category }) => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_API_KEY;
-
-    if (!apiKey) {
-      setError("API key is missing. Please check your .env file.");
-      return;
-    }
-
-    const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
-;
+    const url = `/.netlify/functions/news?category=${category}`;
 
     fetch(url)
       .then((response) => {
