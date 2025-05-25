@@ -1,4 +1,3 @@
-import React from "react";
 import NewsImg from '../assets/News.jpg'
 const NewsItem = ({title,description,src,url}) => {
   return (

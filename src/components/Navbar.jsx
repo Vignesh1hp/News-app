@@ -1,5 +1,3 @@
-import React from "react";
-
 const Navbar = ({setCategory}) => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">

@@ -6,7 +6,14 @@ const NewsBoard = ({ category }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const url = `/.netlify/functions/news?category=${category}`;
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+    if (!apiKey) {
+      setError("API key is missing. Please check your .env file.");
+      return;
+    }
+
+    const url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
 
     fetch(url)
       .then((response) => {
@@ -17,6 +24,7 @@ const NewsBoard = ({ category }) => {
       })
       .then((data) => {
         setArticles(data.articles || []);
+        setError(null); // clear previous error if successful
       })
       .catch((err) => {
         console.error("Fetch error:", err);
